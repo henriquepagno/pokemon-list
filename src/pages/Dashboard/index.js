@@ -1,9 +1,15 @@
 import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import { GET_POKEMONS } from '../../graphql/get-pokemons';
 
 // import { Container } from './styles';
 
-function Dashboard() {
-  return <p>Dashboard</p>;
-}
+export default function Dashboard() {
+  const pokemon = useQuery(GET_POKEMONS, {
+    variables: { first: 10 },
+  }).data;
 
-export default Dashboard;
+  console.log(pokemon);
+
+  return <></>;
+}
