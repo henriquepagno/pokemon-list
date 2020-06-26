@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
-export const GET_POKEMONS = gql`
-  query pokemons($first: Int!) {
-    pokemons(first: $first) {
+export const GET_POKEMON_BY_NAME = gql`
+  query pokemon($name: String) {
+    pokemon(name: $name) {
       id
       number
       name
