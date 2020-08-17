@@ -18,3 +18,22 @@ export const GET_POKEMON_BY_NAME = gql`
     }
   }
 `;
+
+export const GET_POKEMON_BY_ID = gql`
+  query pokemon($id: String) {
+    pokemon(id: $id) {
+      id
+      number
+      name
+      image
+      maxHP
+      maxCP
+      attacks {
+        special {
+          name
+          damage
+        }
+      }
+    }
+  }
+`;
