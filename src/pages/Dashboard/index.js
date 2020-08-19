@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
+import { graphql, compose } from 'react-apollo';
+
 import { GET_POKEMONS } from '../../graphql/get-pokemons';
 import { GET_POKEMON_BY_NAME } from '../../graphql/get-pokemon';
 
@@ -8,10 +10,10 @@ import { Container, PokemonRow, SinglePokemon } from './styles';
 import PokemonCard from '../../components/PokemonCard';
 import SearchInput from '../../components/SearchInput';
 
-export default function Dashboard() {
+function Dashboard() {
   const [queryString, setQueryString] = useState('');
 
-  const { data: { pokemons = [], refetch } = {} } = useQuery(GET_POKEMONS, {
+  const { loading, data: { pokemons = [] } = {} } = useQuery(GET_POKEMONS, {
     variables: { first: 151 },
   });
 
@@ -22,27 +24,40 @@ export default function Dashboard() {
     }
   );
 
-  useEffect(() => {
-    if (refetch) {
-      console.log('refetch');
-      refetch();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   function handleSearch(searchString) {
+    console.log('handleSearch');
     setQueryString(searchString);
     search();
   }
 
   return (
     <Container>
-      <SearchInput
-        placeholder="Buscar por encomendas"
-        handleSearch={handleSearch}
-      />
+      <SearchInput placeholder="Buscar Pokémon" handleSearch={handleSearch} />
 
-      {queryString && (
+      {loading ? (
+        <p>Carregando...</p>
+      ) : (
+        queryString && (
+          <SinglePokemon>
+            {pokemon ? (
+              <PokemonCard key={pokemon.id} pokemon={pokemon} />
+            ) : (
+              <p>Não há dados para a consulta.</p>
+            )}
+          </SinglePokemon>
+        )
+      )}
+
+      {!queryString && (
+        <PokemonRow>
+          {pokemons &&
+            pokemons.map((pokemonReg) => (
+              <PokemonCard key={pokemonReg.id} pokemon={pokemonReg} />
+            ))}
+        </PokemonRow>
+      )}
+
+      {/* {queryString && (
         <SinglePokemon>
           {pokemon ? (
             <PokemonCard key={pokemon.id} pokemon={pokemon} />
@@ -59,7 +74,9 @@ export default function Dashboard() {
               <PokemonCard key={pokemonReg.id} pokemon={pokemonReg} />
             ))}
         </PokemonRow>
-      )}
+      )} */}
     </Container>
   );
 }
+
+export default Dashboard;
