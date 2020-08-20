@@ -6,6 +6,8 @@ export const GET_POKEMONS = gql`
       id
       number
       name
+      classification
+      types
       image
       maxHP
       maxCP

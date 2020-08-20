@@ -1,5 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
+import background from '../assets/container_bg.png';
+
+import Colors from './Constants';
+
 export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
@@ -20,6 +24,27 @@ export default createGlobalStyle`
 
   body {
     -webkit-font-smoothing: antialiased;
+    background: ${Colors.darkBlack} url(${background});
+    overflow: hidden;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: white gray;
+  }
+
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: gray;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: blue;
+    border-radius: 20px;
+    border: 3px solid white;
   }
 
   body, input, button {

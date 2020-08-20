@@ -1,14 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
-import { graphql, compose } from 'react-apollo';
 
 import { GET_POKEMONS } from '../../graphql/get-pokemons';
 import { GET_POKEMON_BY_NAME } from '../../graphql/get-pokemon';
 
-import { Container, PokemonRow, SinglePokemon } from './styles';
-
 import PokemonCard from '../../components/PokemonCard';
 import SearchInput from '../../components/SearchInput';
+
+import {
+  Container,
+  Content,
+  PokemonRow,
+  SinglePokemon,
+  Loading,
+  NoPokemonMessage,
+} from './styles';
+
+import Colors from '../../styles/Constants';
 
 function Dashboard() {
   const [queryString, setQueryString] = useState('');
@@ -25,56 +33,49 @@ function Dashboard() {
   );
 
   function handleSearch(searchString) {
-    console.log('handleSearch');
     setQueryString(searchString);
     search();
   }
 
   return (
     <Container>
-      <SearchInput placeholder="Buscar Pokémon" handleSearch={handleSearch} />
-
       {loading ? (
-        <p>Carregando...</p>
+        <Loading
+          type="spinningBubbles"
+          color={Colors.red}
+          height="10%"
+          width="10%"
+        />
       ) : (
-        queryString && (
-          <SinglePokemon>
-            {pokemon ? (
-              <PokemonCard key={pokemon.id} pokemon={pokemon} />
-            ) : (
-              <p>Não há dados para a consulta.</p>
+        <>
+          <SearchInput
+            placeholder="Buscar Pokémon"
+            handleSearch={handleSearch}
+          />
+          <Content>
+            {queryString && (
+              <SinglePokemon>
+                {pokemon ? (
+                  <PokemonCard key={pokemon.id} pokemon={pokemon} />
+                ) : (
+                  <NoPokemonMessage>
+                    No Pokémons found with that name.
+                  </NoPokemonMessage>
+                )}
+              </SinglePokemon>
             )}
-          </SinglePokemon>
-        )
-      )}
 
-      {!queryString && (
-        <PokemonRow>
-          {pokemons &&
-            pokemons.map((pokemonReg) => (
-              <PokemonCard key={pokemonReg.id} pokemon={pokemonReg} />
-            ))}
-        </PokemonRow>
+            {!queryString && (
+              <PokemonRow>
+                {pokemons &&
+                  pokemons.map((pokemonReg) => (
+                    <PokemonCard key={pokemonReg.id} pokemon={pokemonReg} />
+                  ))}
+              </PokemonRow>
+            )}
+          </Content>
+        </>
       )}
-
-      {/* {queryString && (
-        <SinglePokemon>
-          {pokemon ? (
-            <PokemonCard key={pokemon.id} pokemon={pokemon} />
-          ) : (
-            <p>Não há dados para a consulta.</p>
-          )}
-        </SinglePokemon>
-      )}
-
-      {!queryString && (
-        <PokemonRow>
-          {pokemons &&
-            pokemons.map((pokemonReg) => (
-              <PokemonCard key={pokemonReg.id} pokemon={pokemonReg} />
-            ))}
-        </PokemonRow>
-      )} */}
     </Container>
   );
 }

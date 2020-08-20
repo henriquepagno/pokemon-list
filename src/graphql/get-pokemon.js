@@ -25,6 +25,11 @@ export const GET_POKEMON_BY_ID = gql`
       id
       number
       name
+      classification
+      types
+      evolutions {
+        id
+      }
       image
       maxHP
       maxCP

@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
+import Colors from '../../styles/Constants';
+
 export const Container = styled.div`
-  background: #fff;
+  background: ${Colors.white};
   display: flex;
   align-items: center;
-  width: 230px;
+  width: 500px;
   border-radius: 4px;
-  border: 1px #eee solid;
+  border: 1px ${Colors.darkGray} solid;
+  margin-bottom: 30px;
 
   svg {
     margin-left: 7px;

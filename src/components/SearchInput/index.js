@@ -6,6 +6,8 @@ import { MdSearch } from 'react-icons/md';
 
 import { Container } from './styles';
 
+import Colors from '../../styles/Constants';
+
 export default function SearchInput({ placeholder, handleSearch }) {
   const _debouncedSearch = _.debounce((text) => {
     handleSearch(text);
@@ -13,7 +15,7 @@ export default function SearchInput({ placeholder, handleSearch }) {
 
   return (
     <Container>
-      <MdSearch size={22} color="#b2b2b2" />
+      <MdSearch size={22} color={Colors.darkGray} />
       <input
         name="search"
         type="search"
