@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 
 import { GET_POKEMONS } from '../../graphql/get-pokemons';
@@ -19,6 +19,7 @@ import {
 import Colors from '../../styles/Constants';
 
 function Dashboard() {
+  const listRef = useRef();
   const [queryString, setQueryString] = useState('');
 
   const { loading, data: { pokemons = [] } = {} } = useQuery(GET_POKEMONS, {
@@ -36,6 +37,21 @@ function Dashboard() {
     setQueryString(searchString);
     search();
   }
+
+  function handleClick() {
+    const { scrollTop } = listRef.current;
+
+    localStorage.setItem('@pokedex/scrollPosition', scrollTop);
+  }
+
+  useEffect(() => {
+    const scrollPosition = localStorage.getItem('@pokedex/scrollPosition');
+
+    if (scrollPosition && listRef.current) {
+      listRef.current.scrollTop = scrollPosition;
+      localStorage.removeItem('@pokedex/scrollPosition');
+    }
+  }, []);
 
   return (
     <Container>
@@ -56,7 +72,11 @@ function Dashboard() {
             {queryString && (
               <SinglePokemon>
                 {pokemon ? (
-                  <PokemonCard key={pokemon.id} pokemon={pokemon} />
+                  <PokemonCard
+                    key={pokemon.id}
+                    pokemon={pokemon}
+                    handleClick={() => handleClick()}
+                  />
                 ) : (
                   <NoPokemonMessage>
                     No Pokémons found with that name.
@@ -66,10 +86,14 @@ function Dashboard() {
             )}
 
             {!queryString && (
-              <PokemonRow>
+              <PokemonRow ref={listRef}>
                 {pokemons &&
                   pokemons.map((pokemonReg) => (
-                    <PokemonCard key={pokemonReg.id} pokemon={pokemonReg} />
+                    <PokemonCard
+                      key={pokemonReg.id}
+                      pokemon={pokemonReg}
+                      handleClick={() => handleClick()}
+                    />
                   ))}
               </PokemonRow>
             )}

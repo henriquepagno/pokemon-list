@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
+
 import { GET_POKEMON_BY_ID } from '../../graphql/get-pokemon';
 
 import { Container, Image } from './styles';

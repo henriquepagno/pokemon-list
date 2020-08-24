@@ -6,20 +6,22 @@ import TagType from '../TagType';
 
 import { Container, Title, Image, Number, Name, TagsContainer } from './styles';
 
-function PokemonCard({ pokemon }) {
+function PokemonCard({ pokemon, handleClick }) {
   return (
-    <Link to={`/detail/${pokemon.id}`}>
-      <Container>
+    <Link id={pokemon.id} to={`/detail/${pokemon.id}`}>
+      <Container onClick={handleClick}>
         <Title>
           <Number>#{pokemon.number}</Number>
           <Name>{pokemon.name}</Name>
         </Title>
         <Image src={pokemon.image} alt={pokemon.name} />
-        <TagsContainer>
-          {pokemon.types.map((type) => (
-            <TagType key={type} type={type} />
-          ))}
-        </TagsContainer>
+        {pokemon.types && (
+          <TagsContainer>
+            {pokemon.types.map((type) => (
+              <TagType key={type} type={type} />
+            ))}
+          </TagsContainer>
+        )}
       </Container>
     </Link>
   );
@@ -30,6 +32,7 @@ PokemonCard.propTypes = {
     PropTypes.object,
     PropTypes.arrayOf(PropTypes.object),
   ]).isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default PokemonCard;
