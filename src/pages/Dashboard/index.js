@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 
-import { GET_POKEMONS } from '../../graphql/get-pokemons';
-import { GET_POKEMON_BY_NAME } from '../../graphql/get-pokemon';
+import scrollPositionState from '../../helpers/scrollPositionState';
+
+import { GET_POKEMONS } from '../../graphql/queries/get-pokemons';
+import { GET_POKEMON_BY_NAME } from '../../graphql/queries/get-pokemon';
 
 import PokemonCard from '../../components/PokemonCard';
 import SearchInput from '../../components/SearchInput';
@@ -41,15 +43,12 @@ function Dashboard() {
   function handleClick() {
     const { scrollTop } = listRef.current;
 
-    localStorage.setItem('@pokedex/scrollPosition', scrollTop);
+    scrollPositionState(scrollTop);
   }
 
   useEffect(() => {
-    const scrollPosition = localStorage.getItem('@pokedex/scrollPosition');
-
-    if (scrollPosition && listRef.current) {
-      listRef.current.scrollTop = scrollPosition;
-      localStorage.removeItem('@pokedex/scrollPosition');
+    if (scrollPositionState() && listRef.current) {
+      listRef.current.scrollTop = scrollPositionState();
     }
   }, []);
 

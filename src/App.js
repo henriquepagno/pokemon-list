@@ -6,7 +6,7 @@ import Header from './components/Header';
 import Routes from './routes';
 
 import history from './services/history';
-import apolloClient from './services/apolloClient';
+import apolloClient from './graphql/apolloClient';
 
 import GlobalStyle from './styles/global';
 

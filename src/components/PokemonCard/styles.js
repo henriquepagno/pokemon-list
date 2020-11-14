@@ -9,7 +9,7 @@ export const Container = styled.li`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.5s;
+  transition: transform 0.3s;
   padding: 15px 15px;
   background: ${Colors.white};
   border-radius: 5px;
