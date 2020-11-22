@@ -14,7 +14,7 @@ function PokemonCard({ pokemon, handleClick }) {
           <Number>#{pokemon.number}</Number>
           <Name>{pokemon.name}</Name>
         </Title>
-        <Image src={pokemon.image} alt={pokemon.name} />
+        <Image src={pokemon.image} alt={`${pokemon.name} image`} />
         {pokemon.types && (
           <TagsContainer>
             {pokemon.types.map((type) => (

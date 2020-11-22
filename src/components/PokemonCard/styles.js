@@ -5,14 +5,13 @@ import Colors from '../../styles/Constants';
 export const Container = styled.li`
   display: flex;
   flex-direction: column;
-  border: 1px solid ${Colors.darkGray};
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: transform 0.3s;
   padding: 15px 15px;
   background: ${Colors.white};
-  border-radius: 5px;
+  border-radius: 10px;
 
   &:hover {
     transform: scale(1.05, 1.05);
