@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 
 import TagType from '../../components/TagType';
 import Input from '../../components/Input';
+import AttackList from '../../components/AttackList';
 
 import { cache } from '../../graphql/apolloClient';
 
@@ -31,8 +32,6 @@ export default function Detail() {
     variables: { id: pokemonId },
   });
 
-  console.log('pokemon', pokemon);
-
   useEffect(() => {
     formRef.current.setData(pokemon);
   }, [pokemon]);
@@ -48,6 +47,18 @@ export default function Detail() {
       .typeError('Max CP must be a valid number')
       .max(100000, 'Max CP is 100000')
       .min(1, 'Min CP is 1'),
+    attacks: Yup.object({
+      special: Yup.array(
+        Yup.object().shape({
+          name: Yup.string().required(`Attack description can't be null`),
+          damage: Yup.number()
+            .required()
+            .typeError('Damage must be a valid number')
+            .min(1, 'Min damage is 1')
+            .max(1000, 'Max damage is 1000'),
+        })
+      ),
+    }),
   });
 
   async function handleSubmit(data) {
@@ -58,19 +69,25 @@ export default function Detail() {
         abortEarly: false,
       });
 
-      console.log(data);
-
       cache.modify({
         id: cache.identify(pokemon),
         fields: {
-          name(cachedName) {
-            return cachedName.toUpperCase();
-          },
           maxHP() {
             return data.maxHP;
           },
           maxCP() {
             return data.maxCP;
+          },
+          attacks() {
+            const mappedAttacks = data.attacks.special.map((attack) => ({
+              ...attack,
+              __typename: 'Attack',
+            }));
+
+            return {
+              __typename: 'PokemonAttack',
+              special: [...mappedAttacks],
+            };
           },
         },
         broadcast: false, // Include this to prevent automatic query refresh */
@@ -122,6 +139,7 @@ export default function Detail() {
           label="MaxCP"
           placeholder="Inform pokemon's max HP"
         />
+        {pokemon.attacks && <AttackList attacks={pokemon.attacks} />}
       </Form>
       <button type="submit" form="pokemonForm">
         Save
