@@ -15,20 +15,56 @@ export const Container = styled.div`
   padding: 15px;
 `;
 
+export const RowContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+`;
+
+export const RowStatContainer = styled(RowContainer)`
+  div:last-child {
+    margin-left: 5%;
+  }
+`;
+
+export const DataContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: ${(props) => props.color};
+`;
+
+export const StatsContainer = styled.div`
+  border: 2px solid ${Colors.blue};
+  margin-top: 60px;
+  padding: 15px 15px;
+  border-radius: 10px;
+`;
+
+export const SaveContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-end;
+`;
+
 export const TitleContainer = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  width: 25%;
-  padding-bottom: 20px;
+  width: 100%;
+  padding: 20px 40px;
+
+  span:not(:first-child) {
+    margin-left: 10px;
+  }
 `;
 
 export const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   padding-bottom: 20px;
 `;
 
@@ -56,16 +92,39 @@ export const Image = styled.img`
   height: 200px;
   width: 200px;
   padding: 15px 15px;
-  border: 1px solid ${Colors.lightGray};
   border-radius: 10px;
+  border: 2px solid ${Colors.blue};
 `;
 
 export const TagsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 25%;
+  align-self: flex-start;
 
   div:not(:first-child) {
     margin-left: 10px;
+  }
+`;
+
+export const StatsTitle = styled.h3`
+  color: ${Colors.lightBlack};
+  font-weight: bold;
+  padding-bottom: 5px;
+`;
+
+export const Button = styled.button`
+  background: ${Colors.blue};
+  color: ${Colors.white};
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px ${Colors.blue} solid;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 8px 15px;
+  transition: transform 0.01s;
+
+  &:hover {
+    transform: scale(1.05, 1.05);
   }
 `;

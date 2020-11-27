@@ -8,6 +8,7 @@ const Colors = {
   green: '#82bf18',
   red: '#e74040',
   yellow: '#e7ba40',
+  blue: '#2a8ad4',
   darkBlack: '#191920',
 };
 

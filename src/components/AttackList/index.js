@@ -4,32 +4,59 @@ import { Scope } from '@unform/core';
 
 import Input from '../Input';
 
-import { DataContainer } from './styles';
+import { Table } from './styles';
 
 function AttackList({ attacks }) {
   return (
     <Scope path="attacks">
-      {attacks &&
-        attacks.special.map((attack, index) => {
-          return (
-            <Scope key={attack.name} path={`special[${index}]`}>
-              <DataContainer>
-                <Input
+      <Table>
+        <thead>
+          <tr>
+            <th>Attack name</th>
+            <th>Damage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {attacks &&
+            attacks.special.map((attack, index) => {
+              return (
+                <tr key={attack.name}>
+                  <Scope path={`special[${index}]`}>
+                    {/* <DataContainer> */}
+                    <td>
+                      <Input
+                        name="name"
+                        type="text"
+                        placeholder="Pokémon's attack name"
+                      />
+                    </td>
+                    <td>
+                      <Input
+                        name="damage"
+                        type="text"
+                        placeholder="Pokémon's attack damage"
+                      />
+                    </td>
+
+                    {/* <Input
                   name="name"
                   type="text"
-                  label="Attack name"
+                  label={index === 0 ? 'Attack name' : null}
                   placeholder="Pokémon's attack name"
-                />
-                <Input
+                /> */}
+                    {/* <Input
                   name="damage"
                   type="text"
-                  label="Damage"
+                  label={index === 0 ? 'Damage' : null}
                   placeholder="Pokémon's attack damage"
-                />
-              </DataContainer>
-            </Scope>
-          );
-        })}
+                /> */}
+                    {/* </DataContainer> */}
+                  </Scope>
+                </tr>
+              );
+            })}
+        </tbody>
+      </Table>
     </Scope>
   );
 }

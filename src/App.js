@@ -31,7 +31,7 @@ function App() {
         <Header />
         <Routes />
         <GlobalStyle />
-        <StyledContainer autoClose={3000} />
+        <StyledContainer autoClose={2000} />
       </Router>
     </ApolloProvider>
   );

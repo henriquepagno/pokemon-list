@@ -15,6 +15,8 @@ import { GET_POKEMON_BY_ID } from '../../graphql/queries/get-pokemon';
 
 import {
   Container,
+  RowContainer,
+  RowStatContainer,
   TitleContainer,
   ImageContainer,
   Classification,
@@ -22,6 +24,11 @@ import {
   Name,
   Image,
   TagsContainer,
+  DataContainer,
+  StatsContainer,
+  SaveContainer,
+  StatsTitle,
+  Button,
 } from './styles';
 
 export default function Detail() {
@@ -109,41 +116,62 @@ export default function Detail() {
 
   return (
     <Container>
-      <TitleContainer>
-        <Number>{`#${pokemon.number}`}</Number>
-        <Name>{pokemon.name}</Name>
-      </TitleContainer>
+      <RowContainer>
+        <DataContainer color="white">
+          <TitleContainer>
+            <Number>{`#${pokemon.number}`}</Number>
+            <Name>{pokemon.name}</Name>
+          </TitleContainer>
 
-      <ImageContainer>
-        <Image src={pokemon.image} alt={`${pokemon.name} image`} />
-        <Classification>{pokemon.classification}</Classification>
-        {pokemon.types && (
-          <TagsContainer>
-            {pokemon.types.map((type) => (
-              <TagType key={type} type={type} />
-            ))}
-          </TagsContainer>
-        )}
-      </ImageContainer>
+          <ImageContainer>
+            <Image src={pokemon.image} alt={`${pokemon.name} image`} />
+            <Classification>{pokemon.classification}</Classification>
+            {pokemon.types && (
+              <TagsContainer>
+                {pokemon.types.map((type) => (
+                  <TagType key={type} type={type} />
+                ))}
+              </TagsContainer>
+            )}
+          </ImageContainer>
+        </DataContainer>
 
-      <Form ref={formRef} onSubmit={handleSubmit} id="pokemonForm">
-        <Input
-          name="maxHP"
-          type="text"
-          label="MaxHP"
-          placeholder="Inform pokemon's max HP"
-        />
-        <Input
-          name="maxCP"
-          type="text"
-          label="MaxCP"
-          placeholder="Inform pokemon's max HP"
-        />
-        {pokemon.attacks && <AttackList attacks={pokemon.attacks} />}
-      </Form>
-      <button type="submit" form="pokemonForm">
-        Save
-      </button>
+        <DataContainer color="white">
+          <StatsContainer>
+            <StatsTitle>Stats</StatsTitle>
+            <Form ref={formRef} onSubmit={handleSubmit} id="pokemonForm">
+              <RowStatContainer>
+                <Input
+                  name="maxHP"
+                  type="text"
+                  label="MaxHP"
+                  placeholder="Inform pokemon's max HP"
+                  width="30%"
+                />
+                <Input
+                  name="maxCP"
+                  type="text"
+                  label="MaxCP"
+                  placeholder="Inform pokemon's max CP"
+                  width="30%"
+                />
+              </RowStatContainer>
+              {pokemon.attacks && <AttackList attacks={pokemon.attacks} />}
+            </Form>
+
+            <SaveContainer>
+              <Button type="submit" form="pokemonForm">
+                Save
+              </Button>
+            </SaveContainer>
+          </StatsContainer>
+        </DataContainer>
+      </RowContainer>
+      <RowContainer>
+        <DataContainer>
+          {pokemon.evolutions && <p> Aqui iria as evoluções daí </p>}
+        </DataContainer>
+      </RowContainer>
     </Container>
   );
 }

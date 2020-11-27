@@ -4,7 +4,7 @@ import { useField } from '@unform/core';
 
 import { Container } from './styles';
 
-export default function Input({ name, label, ...rest }) {
+export default function Input({ name, label, width, ...rest }) {
   const inputRef = useRef(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
@@ -17,7 +17,7 @@ export default function Input({ name, label, ...rest }) {
   }, [fieldName, registerField]);
 
   return (
-    <Container>
+    <Container width={width}>
       <label htmlFor={fieldName}>{label}</label>
       <input
         id={fieldName}
@@ -33,9 +33,11 @@ export default function Input({ name, label, ...rest }) {
 Input.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
+  width: PropTypes.string,
 };
 
 Input.defaultProps = {
   name: '',
   label: '',
+  width: 'auto',
 };
