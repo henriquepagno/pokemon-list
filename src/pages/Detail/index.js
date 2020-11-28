@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import TagType from '../../components/TagType';
 import Input from '../../components/Input';
 import AttackList from '../../components/AttackList';
+import PokemonCard from '../../components/PokemonCard';
 
 import { cache } from '../../graphql/apolloClient';
 
@@ -27,8 +28,11 @@ import {
   DataContainer,
   StatsContainer,
   SaveContainer,
-  StatsTitle,
+  EvolutionContainer,
+  MarginContainer,
+  ContainerTitle,
   Button,
+  Arrow,
 } from './styles';
 
 export default function Detail() {
@@ -138,7 +142,7 @@ export default function Detail() {
 
         <DataContainer color="white">
           <StatsContainer>
-            <StatsTitle>Stats</StatsTitle>
+            <ContainerTitle>Stats</ContainerTitle>
             <Form ref={formRef} onSubmit={handleSubmit} id="pokemonForm">
               <RowStatContainer>
                 <Input
@@ -167,11 +171,26 @@ export default function Detail() {
           </StatsContainer>
         </DataContainer>
       </RowContainer>
-      <RowContainer>
-        <DataContainer>
-          {pokemon.evolutions && <p> Aqui iria as evoluções daí </p>}
-        </DataContainer>
-      </RowContainer>
+      {pokemon.evolutions && (
+        <RowContainer>
+          <DataContainer>
+            <EvolutionContainer>
+              <ContainerTitle>Evolution</ContainerTitle>
+              <MarginContainer>
+                {pokemon.evolutions.map((pokemonReg, index) => (
+                  <>
+                    {index > 0 && <Arrow />}
+                    <PokemonCard
+                      key={pokemonReg.id}
+                      pokemonId={pokemonReg.id}
+                    />
+                  </>
+                ))}
+              </MarginContainer>
+            </EvolutionContainer>
+          </DataContainer>
+        </RowContainer>
+      )}
     </Container>
   );
 }

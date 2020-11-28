@@ -42,6 +42,16 @@ export const StatsContainer = styled.div`
   border-radius: 10px;
 `;
 
+export const EvolutionContainer = styled(StatsContainer)`
+  margin: 20px 20px;
+`;
+
+export const MarginContainer = styled.div`
+  margin: 20px 20px;
+  display: flex;
+  flex-diretion: row;
+`;
+
 export const SaveContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -106,7 +116,7 @@ export const TagsContainer = styled.div`
   }
 `;
 
-export const StatsTitle = styled.h3`
+export const ContainerTitle = styled.h3`
   color: ${Colors.lightBlack};
   font-weight: bold;
   padding-bottom: 5px;
@@ -127,4 +137,14 @@ export const Button = styled.button`
   &:hover {
     transform: scale(1.05, 1.05);
   }
+`;
+
+export const Arrow = styled.p`
+  width: 0px;
+  height: 0px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid ${Colors.blue};
+  align-self: center;
+  margin: 0px 20px;
 `;

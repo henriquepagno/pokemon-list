@@ -73,7 +73,7 @@ function Dashboard() {
                 {pokemon ? (
                   <PokemonCard
                     key={pokemon.id}
-                    pokemon={pokemon}
+                    pokemonId={pokemon.id}
                     handleClick={() => handleClick()}
                   />
                 ) : (
@@ -90,7 +90,7 @@ function Dashboard() {
                   pokemons.map((pokemonReg) => (
                     <PokemonCard
                       key={pokemonReg.id}
-                      pokemon={pokemonReg}
+                      pokemonId={pokemonReg.id}
                       handleClick={() => handleClick()}
                     />
                   ))}

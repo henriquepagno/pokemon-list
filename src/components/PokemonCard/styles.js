@@ -12,6 +12,7 @@ export const Container = styled.li`
   padding: 15px 15px;
   background: ${Colors.white};
   border-radius: 10px;
+  box-shadow: 2px 2px 8px 1px ${Colors.darkGray};
 
   &:hover {
     transform: scale(1.05, 1.05);

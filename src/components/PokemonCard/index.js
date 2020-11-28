@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/react-hooks';
 
 import TagType from '../TagType';
 
+import { GET_POKEMON_BY_ID } from '../../graphql/queries/get-pokemon';
+
 import { Container, Title, Image, Number, Name, TagsContainer } from './styles';
 
-function PokemonCard({ pokemon, handleClick }) {
+function PokemonCard({ pokemonId, handleClick }) {
+  const { data: { pokemon = [] } = {} } = useQuery(GET_POKEMON_BY_ID, {
+    variables: { id: pokemonId },
+  });
+
   return (
     <Link id={pokemon.id} to={`/detail/${pokemon.id}`}>
       <Container onClick={handleClick}>
@@ -28,11 +35,12 @@ function PokemonCard({ pokemon, handleClick }) {
 }
 
 PokemonCard.propTypes = {
-  pokemon: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.arrayOf(PropTypes.object),
-  ]).isRequired,
-  handleClick: PropTypes.func.isRequired,
+  pokemonId: PropTypes.string.isRequired,
+  handleClick: PropTypes.func,
+};
+
+PokemonCard.defaultProps = {
+  handleClick: null,
 };
 
 export default PokemonCard;
