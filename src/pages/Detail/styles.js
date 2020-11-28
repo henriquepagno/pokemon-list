@@ -61,7 +61,7 @@ export const SaveContainer = styled.div`
 
 export const TitleContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   padding: 20px 40px;
@@ -69,6 +69,11 @@ export const TitleContainer = styled.div`
   span:not(:first-child) {
     margin-left: 10px;
   }
+`;
+
+export const TitleRowContainer = styled(RowContainer)`
+  display: flex;
+  align-items: center;
 `;
 
 export const ImageContainer = styled.div`
@@ -80,11 +85,11 @@ export const ImageContainer = styled.div`
 
 export const Classification = styled.span`
   display: flex;
-  justify-content: center;
-  width: 100%;
   color: ${Colors.darkGray};
   font-style: italic;
   font-size: 14px;
+  height: 100%;
+  align-items: flex-end;
 `;
 
 export const Number = styled.span`
@@ -99,11 +104,10 @@ export const Name = styled.span`
 `;
 
 export const Image = styled.img`
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
   padding: 15px 15px;
   border-radius: 10px;
-  border: 2px solid ${Colors.blue};
 `;
 
 export const TagsContainer = styled.div`

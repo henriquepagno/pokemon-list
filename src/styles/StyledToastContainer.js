@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 
+import Colors from './Constants';
+
 export const StyledContainer = styled(ToastContainer).attrs({
   // custom props
 })`
@@ -13,10 +15,14 @@ export const StyledContainer = styled(ToastContainer).attrs({
   .Toastify__toast--warning {
   }
   .Toastify__toast--success {
-    height: 100px;
+    min-height: 60px;
+    border-radius: 8px;
+    background: ${Colors.blue};
+    box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.3);
   }
   .Toastify__toast-body {
   }
   .Toastify__progress-bar {
+    background-color: white;
   }
 `;

@@ -19,6 +19,7 @@ import {
   RowContainer,
   RowStatContainer,
   TitleContainer,
+  TitleRowContainer,
   ImageContainer,
   Classification,
   Number,
@@ -123,20 +124,24 @@ export default function Detail() {
       <RowContainer>
         <DataContainer color="white">
           <TitleContainer>
-            <Number>{`#${pokemon.number}`}</Number>
-            <Name>{pokemon.name}</Name>
+            <TitleRowContainer>
+              <Number>{`#${pokemon.number}`}</Number>
+              <Name>{pokemon.name}</Name>
+            </TitleRowContainer>
+            <TitleRowContainer>
+              {pokemon.types && (
+                <TagsContainer>
+                  {pokemon.types.map((type) => (
+                    <TagType key={type} type={type} />
+                  ))}
+                </TagsContainer>
+              )}
+              <Classification>{pokemon.classification}</Classification>
+            </TitleRowContainer>
           </TitleContainer>
 
           <ImageContainer>
             <Image src={pokemon.image} alt={`${pokemon.name} image`} />
-            <Classification>{pokemon.classification}</Classification>
-            {pokemon.types && (
-              <TagsContainer>
-                {pokemon.types.map((type) => (
-                  <TagType key={type} type={type} />
-                ))}
-              </TagsContainer>
-            )}
           </ImageContainer>
         </DataContainer>
 
