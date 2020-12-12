@@ -13,12 +13,11 @@
   </a>
 </p>
 
-<p>
-  A Pokédex built with GraphQL and Apollo Client, which allows the user to navigate and search all the first 151 Pokémons.
-  The user can change the Pokémon's attacks name and damage, as well as the Max HP and Max CP. This changes are saved on Apollo Client's query cache.
-  It is important to notice that this project is frontend-only application.
-  It consumes the project [GraphQL Pokémon](https://github.com/lucasbento/graphql-pokemon/) built by [Lucas Bento](https://github.com/lucasbento), which should be used when running this application.
-</p>
+A Pokédex built with GraphQL and Apollo Client, which allows the user to navigate and search all the first 151 Pokémons.
+The user can change the Pokémon's attacks name and damage, as well as the Max HP and Max CP. This changes are saved on Apollo Client's query cache.
+It is important to notice that this is a frontend-only project.
+It consumes the project [GraphQL Pokémon](https://github.com/lucasbento/graphql-pokemon/) built by [Lucas Bento](https://github.com/lucasbento), which should be used when running this application.
+
 <br>
 
 <p align="center">
