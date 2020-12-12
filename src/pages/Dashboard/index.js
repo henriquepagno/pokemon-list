@@ -64,7 +64,7 @@ function Dashboard() {
       ) : (
         <>
           <SearchInput
-            placeholder="Buscar Pokémon"
+            placeholder="Search Pokémon"
             handleSearch={handleSearch}
           />
           <Content>
