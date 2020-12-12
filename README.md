@@ -1,68 +1,80 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">
+   Pokédex
+</h1>
 
-## Available Scripts
+<p align="center">
+<img alt="Last commit on GitHub" src="https://img.shields.io/github/last-commit/henriquepagno/pokemon-list?color=7159C1">
+<img alt="Made by Henrique Pagno de Lima" src="https://img.shields.io/badge/made%20by-Henrique Pagno de Lima-%20?color=7159C1">
+<img alt="Project top programing language" src="https://img.shields.io/github/languages/top/henriquepagno/pokemon-list?color=7159C1">
+</p>
+<p align="center">
+  <a href="https://www.linkedin.com/in/henrique-pagno-de-lima/?locale=en_US" target="_blank" >
+    <img alt="Linkedin - Henrique Pagno" src="https://img.shields.io/badge/Linkedin--%23F8952D?style=social&logo=linkedin">
+  </a>
+</p>
 
-In the project directory, you can run:
+<p>
+  A Pokédex built with GraphQL and Apollo Client, which allows the user to navigate and search all the first 151 Pokémons.
+  The user can change the Pokémon's attacks name and damage, as well as the Max HP and Max CP. This changes are saved on Apollo Client's query cache.
+  It is important to notice that this project is frontend-only application.
+  It consumes the project [GraphQL Pokémon](https://github.com/lucasbento/graphql-pokemon/) built by [Lucas Bento](https://github.com/lucasbento), which should be used when running this application.
+</p>
+<br>
 
-### `yarn start`
+<p align="center">
+  <img src="/screenshots/pokemon-list.gif" alt="Pokémon list gif"/>
+</p>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<br>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<h3 align="center">
+  Technologies
+</h3>
 
-### `yarn test`
+This project was developed with the following technologies:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   [ReactJS](https://reactjs.org/)
+-   [GraphQL](https://graphql.org/)
+-   [Apollo Client](https://www.apollographql.com/docs/react/)
+-   [Styled-components](https://www.styled-components.com/)
+-   [React-toastify](https://github.com/fkhadra/react-toastify)
+-   [Yup](https://www.npmjs.com/package/yup)
+-   [ESLint](https://eslint.org/)
+-   [Prettier](https://prettier.io/)
 
-### `yarn build`
+<h3 align="center">
+Executing the Application
+</h3>
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Requirements
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+To run the application you will need:
+* [Git](https://git-scm.com)
+* [Node](https://nodejs.org/)
+* [Yarn](https://yarnpkg.com/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Backend
+Clone the repository and install the dependencies.
+```bash
+# to clone the repository
+git clone https://github.com/lucasbento/graphql-pokemon/
 
-### `yarn eject`
+#install the backend dependencies
+yarn
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Run the backend
+yarn run watch
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Frontend
+Clone the repository and install the dependencies.
+```bash
+git clone https://github.com/henriquepagno/pokemon-list
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#install the frontend dependencies
+yarn
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+# Run the application
+yarn start
+```
