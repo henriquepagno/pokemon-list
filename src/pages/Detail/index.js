@@ -183,13 +183,10 @@ export default function Detail() {
               <ContainerTitle>Evolution</ContainerTitle>
               <MarginContainer>
                 {pokemon.evolutions.map((pokemonReg, index) => (
-                  <>
+                  <React.Fragment key={pokemonReg.id}>
                     {index > 0 && <Arrow />}
-                    <PokemonCard
-                      key={pokemonReg.id}
-                      pokemonId={pokemonReg.id}
-                    />
-                  </>
+                    <PokemonCard pokemonId={pokemonReg.id} />
+                  </React.Fragment>
                 ))}
               </MarginContainer>
             </EvolutionContainer>
