@@ -58,7 +58,7 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    font: 14px 'Roboto', sans-serif;
+    font: 1.4rem 'Roboto', sans-serif;
   }
 
   a {
@@ -71,5 +71,11 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+  }
+
+  @media (max-width: 415px) {
+    html {
+      font-size: 58%;
+    }
   }
 `;

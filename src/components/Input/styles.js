@@ -18,7 +18,7 @@ export const Container = styled.div`
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid ${Colors.darkGray};
     border-radius: 4px;
-    height: 40px;
+    height: 4rem;
     padding: 0 10px;
     color: ${Colors.darkGray};
     margin: 0 0 5px;
