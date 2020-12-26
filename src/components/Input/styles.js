@@ -32,6 +32,6 @@ export const Container = styled.div`
   span {
     color: ${Colors.red};
     align-self: center;
-    font-size: 12px;
+    font-size: 1.2rem;
   }
 `;

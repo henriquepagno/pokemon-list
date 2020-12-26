@@ -20,6 +20,14 @@ export default createGlobalStyle`
     outline: 0;
   }
 
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    font-size: 1.6rem;
+  }
+
   html, body, #root {
     height: 100%;
   }

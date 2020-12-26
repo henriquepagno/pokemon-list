@@ -87,20 +87,20 @@ export const Classification = styled.span`
   display: flex;
   color: ${Colors.darkGray};
   font-style: italic;
-  font-size: 14px;
+  font-size: 1.4rem;
   height: 100%;
   align-items: flex-end;
 `;
 
 export const Number = styled.span`
   color: ${Colors.lightBlack};
-  font-size: 16px;
+  font-size: 1.6rem;
 `;
 
 export const Name = styled.span`
   font-weight: bold;
   color: ${Colors.lightBlack};
-  font-size: 20px;
+  font-size: 2rem;
 `;
 
 export const Image = styled.img`
@@ -134,7 +134,7 @@ export const Button = styled.button`
   border-radius: 5px;
   border: 1px ${Colors.blue} solid;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 1.2rem;
   padding: 8px 15px;
   transition: transform 0.01s;
 

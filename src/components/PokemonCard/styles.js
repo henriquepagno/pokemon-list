@@ -37,13 +37,13 @@ export const Title = styled.div`
 
 export const Number = styled.span`
   color: ${Colors.lightBlack};
-  font-size: 14px;
+  font-size: 1.4rem;
 `;
 
 export const Name = styled.span`
   font-weight: bold;
   color: ${Colors.lightBlack};
-  font-size: 16px;
+  font-size: 1.6rem;
 `;
 
 export const TagsContainer = styled.div`
