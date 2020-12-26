@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1000px;
+  max-width: 60%;
   margin: 30px auto;
 
   height: 90%;
@@ -18,15 +18,15 @@ export const Content = styled.div`
 `;
 
 export const SinglePokemon = styled.ul`
-  display: flex;
-  grid-template-columns: repeat(1, 1fr);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 1fr);
   gap: 15px;
   justify-content: center;
 `;
 
 export const PokemonRow = styled.ul`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(182px, 1fr));
   gap: 15px;
   padding: 10px 10px;
 

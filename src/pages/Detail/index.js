@@ -16,6 +16,7 @@ import { GET_POKEMON_BY_ID } from '../../graphql/queries/get-pokemon';
 
 import {
   Container,
+  MainContainer,
   RowContainer,
   RowStatContainer,
   TitleContainer,
@@ -121,8 +122,8 @@ export default function Detail() {
 
   return (
     <Container>
-      <RowContainer>
-        <DataContainer color="white">
+      <MainContainer>
+        <DataContainer>
           <TitleContainer>
             <TitleRowContainer>
               <Number>{`#${pokemon.number}`}</Number>
@@ -145,7 +146,7 @@ export default function Detail() {
           </ImageContainer>
         </DataContainer>
 
-        <DataContainer color="white">
+        <DataContainer>
           <StatsContainer>
             <ContainerTitle>Stats</ContainerTitle>
             <Form ref={formRef} onSubmit={handleSubmit} id="pokemonForm">
@@ -175,7 +176,7 @@ export default function Detail() {
             </SaveContainer>
           </StatsContainer>
         </DataContainer>
-      </RowContainer>
+      </MainContainer>
       {pokemon.evolutions && (
         <RowContainer>
           <DataContainer>

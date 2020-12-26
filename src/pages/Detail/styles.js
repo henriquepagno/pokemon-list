@@ -3,16 +3,31 @@ import styled from 'styled-components';
 import Colors from '../../styles/Constants';
 
 export const Container = styled.div`
-  max-width: 1000px;
+  max-width: 80%;
   margin: 50px auto;
   display: flex;
   flex-direction: column;
-  background: white;
+  background: #fff;
   flex: 1;
-  justify-content: center;
-  align-items: center;
   border-radius: 10px;
   padding: 15px;
+
+  @media (max-width: 936px) {
+    overflow: auto;
+    position: relative;
+    max-height: 80%;
+    margin: 10px auto;
+  }
+`;
+
+export const MainContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  @media (max-width: 936px) {
+    flex-direction: column;
+  }
 `;
 
 export const RowContainer = styled.div`
@@ -32,7 +47,7 @@ export const DataContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background: ${(props) => props.color};
+  background: #fff;
 `;
 
 export const StatsContainer = styled.div`
@@ -40,6 +55,11 @@ export const StatsContainer = styled.div`
   margin-top: 60px;
   padding: 15px 15px;
   border-radius: 10px;
+
+  @media (max-width: 936px) {
+    margin-top: 0px;
+    margin-bottom: 15px;
+  }
 `;
 
 export const EvolutionContainer = styled(StatsContainer)`
@@ -50,6 +70,10 @@ export const MarginContainer = styled.div`
   margin: 20px 20px;
   display: flex;
   flex-diretion: row;
+
+  @media (max-width: 936px) {
+    flex-direction: column;
+  }
 `;
 
 export const SaveContainer = styled.div`
@@ -80,27 +104,26 @@ export const ImageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 20px;
 `;
 
 export const Classification = styled.span`
   display: flex;
   color: ${Colors.darkGray};
   font-style: italic;
-  font-size: 14px;
+  font-size: 1.4rem;
   height: 100%;
   align-items: flex-end;
 `;
 
 export const Number = styled.span`
   color: ${Colors.lightBlack};
-  font-size: 16px;
+  font-size: 1.6rem;
 `;
 
 export const Name = styled.span`
   font-weight: bold;
   color: ${Colors.lightBlack};
-  font-size: 20px;
+  font-size: 2rem;
 `;
 
 export const Image = styled.img`
@@ -108,6 +131,11 @@ export const Image = styled.img`
   width: 300px;
   padding: 15px 15px;
   border-radius: 10px;
+
+  @media (max-width: 936px) {
+    height: 65%;
+    width: 65%;
+  }
 `;
 
 export const TagsContainer = styled.div`
@@ -134,7 +162,7 @@ export const Button = styled.button`
   border-radius: 5px;
   border: 1px ${Colors.blue} solid;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 1.2rem;
   padding: 8px 15px;
   transition: transform 0.01s;
 
@@ -151,4 +179,11 @@ export const Arrow = styled.p`
   border-left: 10px solid ${Colors.blue};
   align-self: center;
   margin: 0px 20px;
+
+  @media (max-width: 936px) {
+    margin-top: 15px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid ${Colors.blue};
+  }
 `;

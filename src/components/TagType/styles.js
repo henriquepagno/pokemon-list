@@ -13,5 +13,5 @@ export const Container = styled.div`
 export const Type = styled.p`
   font-weight: bold;
   color: ${Colors.white};
-  font-size: 12px;
+  font-size: 1.2rem;
 `;

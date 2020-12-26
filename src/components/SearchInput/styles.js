@@ -6,7 +6,7 @@ export const Container = styled.div`
   background: ${Colors.white};
   display: flex;
   align-items: center;
-  width: 500px;
+  width: 95%;
   border-radius: 4px;
   border: 1px ${Colors.darkGray} solid;
   margin-bottom: 30px;
@@ -19,6 +19,6 @@ export const Container = styled.div`
     border: 0;
     padding: 7px 5px;
     width: 85%;
-    font-size: 14px;
+    font-size: 1.4rem;
   }
 `;

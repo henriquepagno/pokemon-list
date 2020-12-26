@@ -20,6 +20,14 @@ export default createGlobalStyle`
     outline: 0;
   }
 
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    font-size: 1.6rem;
+  }
+
   html, body, #root {
     height: 100%;
   }
@@ -50,7 +58,7 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    font: 14px 'Roboto', sans-serif;
+    font: 1.4rem 'Roboto', sans-serif;
   }
 
   a {
@@ -63,5 +71,11 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+  }
+
+  @media (max-width: 415px) {
+    html {
+      font-size: 58%;
+    }
   }
 `;
