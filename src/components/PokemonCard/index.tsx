@@ -9,7 +9,12 @@ import { GET_POKEMON_BY_ID } from '../../graphql/queries/get-pokemon';
 
 import { Container, Title, Image, Number, Name, TagsContainer } from './styles';
 
-function PokemonCard({ pokemonId, handleClick }) {
+interface Parameters {
+  pokemonId: string;
+  handleClick: () => void;
+}
+
+function PokemonCard({ pokemonId, handleClick }: Parameters) {
   const { data: { pokemon = [] } = {} } = useQuery(GET_POKEMON_BY_ID, {
     variables: { id: pokemonId },
   });

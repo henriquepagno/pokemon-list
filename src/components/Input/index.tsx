@@ -1,10 +1,25 @@
 import React, { useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useField } from '@unform/core';
 
 import { Container } from './styles';
 
-export default function Input({ name, label, width, ...rest }) {
+interface Parameters {
+  name: string;
+  type: string;
+  placeholder: string;
+  label?: string;
+  width?: string;
+  '...rest'?: any[];
+}
+
+export default function Input({
+  name,
+  type,
+  placeholder,
+  label = '',
+  width = 'auto',
+  ...rest
+}: Parameters) {
   const inputRef = useRef(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
@@ -23,21 +38,11 @@ export default function Input({ name, label, width, ...rest }) {
         id={fieldName}
         ref={inputRef}
         defaultValue={defaultValue}
+        type={type}
+        placeholder={placeholder}
         {...rest}
       />
       {error && <span className="error">{error}</span>}
     </Container>
   );
 }
-
-Input.propTypes = {
-  name: PropTypes.string,
-  label: PropTypes.string,
-  width: PropTypes.string,
-};
-
-Input.defaultProps = {
-  name: '',
-  label: '',
-  width: 'auto',
-};

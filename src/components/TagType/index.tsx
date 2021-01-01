@@ -6,7 +6,11 @@ import { Container, Type } from './styles';
 
 import { TagColors } from '../../styles/Constants';
 
-export default function TagType({ type }) {
+interface Parameters {
+  type: string;
+}
+
+export default function TagType({ type }: Parameters) {
   function getColor(typeColor) {
     return TagColors[toLower(typeColor)];
   }

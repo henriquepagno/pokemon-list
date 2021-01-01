@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Router } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { persistCache } from 'apollo-cache-persist';
+import { PersistentStorage } from 'apollo-cache-persist/types';
 
 import Header from './components/Header';
 import Routes from './routes';
@@ -18,7 +19,7 @@ function App() {
     async function getPersistance() {
       await persistCache({
         cache,
-        storage: window.localStorage,
+        storage: window.localStorage as PersistentStorage<any>,
       });
     }
 

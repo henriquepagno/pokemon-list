@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
+import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
@@ -37,16 +38,26 @@ import {
   Arrow,
 } from './styles';
 
+interface UseParams {
+  id: string;
+}
+
 export default function Detail() {
-  const formRef = useRef(null);
-  const { id: pokemonId } = useParams();
+  const formRef = useRef<FormHandles>(null);
+  const { id: pokemonId }: UseParams = useParams();
 
   const { data: { pokemon = [] } = {} } = useQuery(GET_POKEMON_BY_ID, {
     variables: { id: pokemonId },
   });
 
   useEffect(() => {
-    formRef.current.setData(pokemon);
+    const form = formRef.current;
+
+    if (form) {
+      form.setData(pokemon);
+    }
+
+    // formRef.current.setData(pokemon);
   }, [pokemon]);
 
   const schema = Yup.object().shape({
@@ -76,7 +87,11 @@ export default function Detail() {
 
   async function handleSubmit(data) {
     try {
-      formRef.current.setErrors({});
+      const form = formRef.current;
+
+      if (form) {
+        form.setErrors({});
+      }
 
       await schema.validate(data, {
         abortEarly: false,
@@ -115,7 +130,11 @@ export default function Detail() {
           validationErrors[error.path] = error.message;
         });
 
-        formRef.current.setErrors(validationErrors);
+        const form = formRef.current;
+
+        if (form) {
+          form.setErrors(validationErrors);
+        }
       }
     }
   }
@@ -149,7 +168,7 @@ export default function Detail() {
         <DataContainer>
           <StatsContainer>
             <ContainerTitle>Stats</ContainerTitle>
-            <Form ref={formRef} onSubmit={handleSubmit} id="pokemonForm">
+            <Form ref={formRef as any} onSubmit={handleSubmit} id="pokemonForm">
               <RowStatContainer>
                 <Input
                   name="maxHP"

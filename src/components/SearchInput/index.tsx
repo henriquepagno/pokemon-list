@@ -8,7 +8,12 @@ import { Container } from './styles';
 
 import Colors from '../../styles/Constants';
 
-export default function SearchInput({ placeholder, handleSearch }) {
+interface Parameters {
+  placeholder: string;
+  handleSearch: (data: string) => void;
+}
+
+export default function SearchInput({ placeholder, handleSearch }: Parameters) {
   const _debouncedSearch = _.debounce((text) => {
     handleSearch(text);
   }, 400);
