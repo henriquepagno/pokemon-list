@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -11,7 +10,7 @@ import { Container, Title, Image, Number, Name, TagsContainer } from './styles';
 
 interface Parameters {
   pokemonId: string;
-  handleClick: () => void;
+  handleClick?: () => void;
 }
 
 function PokemonCard({ pokemonId, handleClick }: Parameters) {
@@ -38,14 +37,5 @@ function PokemonCard({ pokemonId, handleClick }: Parameters) {
     </Link>
   );
 }
-
-PokemonCard.propTypes = {
-  pokemonId: PropTypes.string.isRequired,
-  handleClick: PropTypes.func,
-};
-
-PokemonCard.defaultProps = {
-  handleClick: null,
-};
 
 export default PokemonCard;

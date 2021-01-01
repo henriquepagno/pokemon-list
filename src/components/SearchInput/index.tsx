@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import { MdSearch } from 'react-icons/md';
@@ -30,8 +29,3 @@ export default function SearchInput({ placeholder, handleSearch }: Parameters) {
     </Container>
   );
 }
-
-SearchInput.propTypes = {
-  placeholder: PropTypes.string.isRequired,
-  handleSearch: PropTypes.func.isRequired,
-};

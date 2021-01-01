@@ -1,6 +1,5 @@
 import React from 'react';
 import { toLower } from 'lodash';
-import PropTypes from 'prop-types';
 
 import { Container, Type } from './styles';
 
@@ -21,7 +20,3 @@ export default function TagType({ type }: Parameters) {
     </Container>
   );
 }
-
-TagType.propTypes = {
-  type: PropTypes.string.isRequired,
-};

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, MutableRefObject } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { FormHandles } from '@unform/core';
@@ -43,7 +43,7 @@ interface UseParams {
 }
 
 export default function Detail() {
-  const formRef = useRef<FormHandles>(null);
+  const formRef = useRef() as MutableRefObject<FormHandles>;
   const { id: pokemonId }: UseParams = useParams();
 
   const { data: { pokemon = [] } = {} } = useQuery(GET_POKEMON_BY_ID, {
@@ -51,14 +51,8 @@ export default function Detail() {
   });
 
   useEffect(() => {
-    const form = formRef.current;
-
-    if (form) {
-      form.setData(pokemon);
-    }
-
-    // formRef.current.setData(pokemon);
-  }, [pokemon]);
+    formRef.current.setData(pokemon);
+  }, [pokemon, formRef]);
 
   const schema = Yup.object().shape({
     maxHP: Yup.number()
