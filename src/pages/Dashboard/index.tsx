@@ -41,13 +41,15 @@ function Dashboard(): ReactElement {
     }
   );
 
-  function handleSearch(searchString): void {
+  function handleSearch(searchString: string): void {
     setQueryString(searchString);
     search();
   }
 
   function handleClick(): void {
-    scrollPositionState(listRef.current.scrollTop);
+    if (listRef.current) {
+      scrollPositionState(listRef.current.scrollTop);
+    }
   }
 
   useEffect(() => {
@@ -91,7 +93,7 @@ function Dashboard(): ReactElement {
             {!queryString && (
               <PokemonRow ref={listRef as any}>
                 {pokemons &&
-                  pokemons.map((pokemonReg) => (
+                  pokemons.map((pokemonReg: { id: string }) => (
                     <PokemonCard
                       key={pokemonReg.id}
                       pokemonId={pokemonReg.id}

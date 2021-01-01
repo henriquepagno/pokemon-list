@@ -13,7 +13,7 @@ interface Parameters {
 }
 
 export default function SearchInput({ placeholder, handleSearch }: Parameters) {
-  const _debouncedSearch = _.debounce((text) => {
+  const _debouncedSearch = _.debounce((text: string) => {
     handleSearch(text);
   }, 400);
 

@@ -28,7 +28,7 @@ function PokemonCard({ pokemonId, handleClick }: Parameters) {
         <Image src={pokemon.image} alt={`${pokemon.name} image`} />
         {pokemon.types && (
           <TagsContainer>
-            {pokemon.types.map((type) => (
+            {pokemon.types.map((type: string) => (
               <TagType key={type} type={type} />
             ))}
           </TagsContainer>

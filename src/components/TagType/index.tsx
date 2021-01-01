@@ -10,7 +10,7 @@ interface Parameters {
 }
 
 export default function TagType({ type }: Parameters) {
-  function getColor(typeColor) {
+  function getColor(typeColor: string) {
     return TagColors[toLower(typeColor)];
   }
 

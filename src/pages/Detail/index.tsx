@@ -1,4 +1,9 @@
-import React, { useRef, useEffect, MutableRefObject } from 'react';
+import React, {
+  useRef,
+  useEffect,
+  MutableRefObject,
+  ReactElement,
+} from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { FormHandles } from '@unform/core';
@@ -42,7 +47,21 @@ interface UseParams {
   id: string;
 }
 
-export default function Detail() {
+interface Attack {
+  name: string;
+  damage: number;
+}
+
+interface Data {
+  id: string;
+  maxHP: number;
+  maxCP: number;
+  attacks: {
+    special: Attack[];
+  };
+}
+
+export default function Detail(): ReactElement {
   const formRef = useRef() as MutableRefObject<FormHandles>;
   const { id: pokemonId }: UseParams = useParams();
 
@@ -79,7 +98,7 @@ export default function Detail() {
     }),
   });
 
-  async function handleSubmit(data) {
+  async function handleSubmit(data: Data) {
     try {
       const form = formRef.current;
 
@@ -120,9 +139,11 @@ export default function Detail() {
       const validationErrors = {};
 
       if (err instanceof Yup.ValidationError) {
-        err.inner.forEach((error) => {
-          validationErrors[error.path] = error.message;
-        });
+        err.inner.forEach(
+          (error: { path: string | number; message: string }) => {
+            validationErrors[error.path] = error.message;
+          }
+        );
 
         const form = formRef.current;
 
@@ -145,7 +166,7 @@ export default function Detail() {
             <TitleRowContainer>
               {pokemon.types && (
                 <TagsContainer>
-                  {pokemon.types.map((type) => (
+                  {pokemon.types.map((type: string) => (
                     <TagType key={type} type={type} />
                   ))}
                 </TagsContainer>
@@ -196,7 +217,7 @@ export default function Detail() {
             <EvolutionContainer>
               <ContainerTitle>Evolution</ContainerTitle>
               <MarginContainer>
-                {pokemon.evolutions.map((pokemonReg, index) => (
+                {pokemon.evolutions.map((pokemonReg: Data, index: number) => (
                   <React.Fragment key={pokemonReg.id}>
                     {index > 0 && <Arrow />}
                     <PokemonCard pokemonId={pokemonReg.id} />
