@@ -1,12 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Scope } from '@unform/core';
 
 import Input from '../Input';
 
 import { Table } from './styles';
 
-function AttackList({ attacks }) {
+interface Attack {
+  name: string;
+  damage: number;
+}
+
+export interface AttacksArray {
+  attacks: {
+    special: Attack[];
+  };
+}
+
+function AttackList({ attacks }: AttacksArray) {
   return (
     <Scope path="attacks">
       <Table>
@@ -18,11 +28,10 @@ function AttackList({ attacks }) {
         </thead>
         <tbody>
           {attacks &&
-            attacks.special.map((attack, index) => {
+            attacks.special.map((attack: Attack, index: number) => {
               return (
                 <tr key={attack.name}>
                   <Scope path={`special[${index}]`}>
-                    {/* <DataContainer> */}
                     <td>
                       <Input
                         name="name"
@@ -37,20 +46,6 @@ function AttackList({ attacks }) {
                         placeholder="Pokémon's attack damage"
                       />
                     </td>
-
-                    {/* <Input
-                  name="name"
-                  type="text"
-                  label={index === 0 ? 'Attack name' : null}
-                  placeholder="Pokémon's attack name"
-                /> */}
-                    {/* <Input
-                  name="damage"
-                  type="text"
-                  label={index === 0 ? 'Damage' : null}
-                  placeholder="Pokémon's attack damage"
-                /> */}
-                    {/* </DataContainer> */}
                   </Scope>
                 </tr>
               );
@@ -60,16 +55,5 @@ function AttackList({ attacks }) {
     </Scope>
   );
 }
-
-AttackList.propTypes = {
-  attacks: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.arrayOf(PropTypes.object),
-  ]),
-};
-
-AttackList.defaultProps = {
-  attacks: '',
-};
 
 export default AttackList;

@@ -1,6 +1,12 @@
-import React, { useRef, useEffect } from 'react';
+import React, {
+  useRef,
+  useEffect,
+  MutableRefObject,
+  ReactElement,
+} from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
+import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
@@ -37,9 +43,27 @@ import {
   Arrow,
 } from './styles';
 
-export default function Detail() {
-  const formRef = useRef(null);
-  const { id: pokemonId } = useParams();
+interface UseParams {
+  id: string;
+}
+
+interface Attack {
+  name: string;
+  damage: number;
+}
+
+interface Data {
+  id: string;
+  maxHP: number;
+  maxCP: number;
+  attacks: {
+    special: Attack[];
+  };
+}
+
+export default function Detail(): ReactElement {
+  const formRef = useRef() as MutableRefObject<FormHandles>;
+  const { id: pokemonId }: UseParams = useParams();
 
   const { data: { pokemon = [] } = {} } = useQuery(GET_POKEMON_BY_ID, {
     variables: { id: pokemonId },
@@ -47,7 +71,7 @@ export default function Detail() {
 
   useEffect(() => {
     formRef.current.setData(pokemon);
-  }, [pokemon]);
+  }, [pokemon, formRef]);
 
   const schema = Yup.object().shape({
     maxHP: Yup.number()
@@ -74,9 +98,13 @@ export default function Detail() {
     }),
   });
 
-  async function handleSubmit(data) {
+  async function handleSubmit(data: Data) {
     try {
-      formRef.current.setErrors({});
+      const form = formRef.current;
+
+      if (form) {
+        form.setErrors({});
+      }
 
       await schema.validate(data, {
         abortEarly: false,
@@ -111,11 +139,17 @@ export default function Detail() {
       const validationErrors = {};
 
       if (err instanceof Yup.ValidationError) {
-        err.inner.forEach((error) => {
-          validationErrors[error.path] = error.message;
-        });
+        err.inner.forEach(
+          (error: { path: string | number; message: string }) => {
+            validationErrors[error.path] = error.message;
+          }
+        );
 
-        formRef.current.setErrors(validationErrors);
+        const form = formRef.current;
+
+        if (form) {
+          form.setErrors(validationErrors);
+        }
       }
     }
   }
@@ -132,7 +166,7 @@ export default function Detail() {
             <TitleRowContainer>
               {pokemon.types && (
                 <TagsContainer>
-                  {pokemon.types.map((type) => (
+                  {pokemon.types.map((type: string) => (
                     <TagType key={type} type={type} />
                   ))}
                 </TagsContainer>
@@ -149,7 +183,7 @@ export default function Detail() {
         <DataContainer>
           <StatsContainer>
             <ContainerTitle>Stats</ContainerTitle>
-            <Form ref={formRef} onSubmit={handleSubmit} id="pokemonForm">
+            <Form ref={formRef as any} onSubmit={handleSubmit} id="pokemonForm">
               <RowStatContainer>
                 <Input
                   name="maxHP"
@@ -183,7 +217,7 @@ export default function Detail() {
             <EvolutionContainer>
               <ContainerTitle>Evolution</ContainerTitle>
               <MarginContainer>
-                {pokemon.evolutions.map((pokemonReg, index) => (
+                {pokemon.evolutions.map((pokemonReg: Data, index: number) => (
                   <React.Fragment key={pokemonReg.id}>
                     {index > 0 && <Arrow />}
                     <PokemonCard pokemonId={pokemonReg.id} />

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import { MdSearch } from 'react-icons/md';
@@ -8,8 +7,13 @@ import { Container } from './styles';
 
 import Colors from '../../styles/Constants';
 
-export default function SearchInput({ placeholder, handleSearch }) {
-  const _debouncedSearch = _.debounce((text) => {
+interface Parameters {
+  placeholder: string;
+  handleSearch: (data: string) => void;
+}
+
+export default function SearchInput({ placeholder, handleSearch }: Parameters) {
+  const _debouncedSearch = _.debounce((text: string) => {
     handleSearch(text);
   }, 400);
 
@@ -25,8 +29,3 @@ export default function SearchInput({ placeholder, handleSearch }) {
     </Container>
   );
 }
-
-SearchInput.propTypes = {
-  placeholder: PropTypes.string.isRequired,
-  handleSearch: PropTypes.func.isRequired,
-};

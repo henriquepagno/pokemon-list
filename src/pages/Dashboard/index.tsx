@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  MutableRefObject,
+  ReactElement,
+} from 'react';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 
 import scrollPositionState from '../../helpers/scrollPositionState';
@@ -20,8 +26,8 @@ import {
 
 import Colors from '../../styles/Constants';
 
-function Dashboard() {
-  const listRef = useRef();
+function Dashboard(): ReactElement {
+  const listRef = useRef() as MutableRefObject<HTMLUListElement>;
   const [queryString, setQueryString] = useState('');
 
   const { loading, data: { pokemons = [] } = {} } = useQuery(GET_POKEMONS, {
@@ -35,22 +41,22 @@ function Dashboard() {
     }
   );
 
-  function handleSearch(searchString) {
+  function handleSearch(searchString: string): void {
     setQueryString(searchString);
     search();
   }
 
-  function handleClick() {
-    const { scrollTop } = listRef.current;
-
-    scrollPositionState(scrollTop);
+  function handleClick(): void {
+    if (listRef.current) {
+      scrollPositionState(listRef.current.scrollTop);
+    }
   }
 
   useEffect(() => {
     if (scrollPositionState() && listRef.current) {
       listRef.current.scrollTop = scrollPositionState();
     }
-  }, []);
+  }, [listRef]);
 
   return (
     <Container>
@@ -85,9 +91,9 @@ function Dashboard() {
             )}
 
             {!queryString && (
-              <PokemonRow ref={listRef}>
+              <PokemonRow ref={listRef as any}>
                 {pokemons &&
-                  pokemons.map((pokemonReg) => (
+                  pokemons.map((pokemonReg: { id: string }) => (
                     <PokemonCard
                       key={pokemonReg.id}
                       pokemonId={pokemonReg.id}

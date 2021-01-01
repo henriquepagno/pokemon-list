@@ -2,8 +2,12 @@ import styled from 'styled-components';
 
 import Colors from '../../styles/Constants';
 
+interface Props {
+  width: string;
+}
+
 export const Container = styled.div`
-  width: ${(props) => props.width};
+  width: ${(props: Props) => props.width};
   display: flex;
   flex-direction: column;
   align-items: flex-start;

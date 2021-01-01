@@ -1,13 +1,16 @@
 import React from 'react';
 import { toLower } from 'lodash';
-import PropTypes from 'prop-types';
 
 import { Container, Type } from './styles';
 
 import { TagColors } from '../../styles/Constants';
 
-export default function TagType({ type }) {
-  function getColor(typeColor) {
+interface Parameters {
+  type: string;
+}
+
+export default function TagType({ type }: Parameters) {
+  function getColor(typeColor: string) {
     return TagColors[toLower(typeColor)];
   }
 
@@ -17,7 +20,3 @@ export default function TagType({ type }) {
     </Container>
   );
 }
-
-TagType.propTypes = {
-  type: PropTypes.string.isRequired,
-};
